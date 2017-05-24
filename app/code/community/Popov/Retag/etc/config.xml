@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Popov_Retag>
+			<version>0.1.0</version>
+		</Popov_Retag>
+	</modules>
+	<global>
+		<helpers>
+			<popov_retag>
+				<class>Popov_Retag_Helper</class>
+			</popov_retag>
+		</helpers>
+		<blocks>
+			<popov_retag>
+				<class>Popov_Retag_Block</class>
+			</popov_retag>
+		</blocks>
+		<models>
+			<popov_retag>
+				<class>Popov_Retag_Model</class>
+				<!--<resourceModel>popov_base_resource</resourceModel>-->
+			</popov_retag>
+		</models>
+
+		<events>
+			<!-- this name is really important, use this to indicate the layout-render-before event -->
+			<controller_action_layout_render_before_catalog_product_view>
+				<observers>
+					<popov_retag_pixel_observer>
+						<type>singleton</type>
+						<class>Popov_Retag_Model_Observer</class>
+						<method>hookToSetProductScript</method>
+					</popov_retag_pixel_observer>
+				</observers>
+			</controller_action_layout_render_before_catalog_product_view>
+			<controller_action_layout_render_before_catalog_category_layered>
+				<observers>
+					<popov_retag_pixel_observer>
+						<type>singleton</type>
+						<class>Popov_Retag_Model_Observer</class>
+						<method>hookToAddCheckoutCartPokuponPixel</method>
+					</popov_retag_pixel_observer>
+				</observers>
+			</controller_action_layout_render_before_catalog_category_layered>
+		</events>
+	</global>
+
+	<frontend>
+		<routers>
+			<popov_retag>
+				<use>standard</use>
+				<args>
+					<module>Popov_Retag</module>
+					<frontName>retag</frontName>
+				</args>
+			</popov_retag>
+		</routers>
+		<layout>
+			<updates>
+				<popov_retag>
+					<file>popov/retag.xml</file>
+				</popov_retag>
+			</updates>
+		</layout>
+	</frontend>
+</config>

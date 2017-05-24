@@ -9,6 +9,8 @@
     }],
     "extra": {
         "map": [
-			  ]
+          ["app/etc/module/Popov_Retag.xml", "app/etc/module/Popov_Retag.xml"],
+          ["app/code/community/Popov/Retag/", "app/code/community/Popov/Retag/"]
+		]
     }
 }
