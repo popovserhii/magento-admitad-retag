@@ -17,13 +17,17 @@ class Popov_Retag_Model_Observer extends Varien_Event_Observer {
 
 	public function hookToSetProductScript() 
 	{
-	    die(__METHOD__);
-        $block = Mage::app()->getLayout()->createBlock('popov_retag/script');
+        $block = Mage::app()->getLayout()->createBlock(
+            'popov_retag/script',
+            'admitad.retag.script',
+            array('action' => Mage::app()->getFrontController()->getAction()->getFullActionName())
+        );
         //$script = $block->getCatalogProductViewScript();
 
         $beforeBodyEnd = Mage::app()->getLayout()->getBlock('before_body_end');
 
         //$handle = Mage::app()->getLayout()->getUpdate()->getHandles();
+        //$actionName = Mage::app()->getFrontController()->getAction()->getFullActionName();
 
         /*$block = $this->getLayout()->createBlock(
             'Mage_Core_Block_Template',
