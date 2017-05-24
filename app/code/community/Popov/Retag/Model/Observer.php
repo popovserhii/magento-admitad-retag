@@ -15,9 +15,25 @@ class Popov_Retag_Model_Observer extends Varien_Event_Observer {
 	 */
 	protected $helper;
 
-	public function hookToSetProductScript() {
+	public function hookToSetProductScript() 
+	{
 	    die(__METHOD__);
-		$this->getHelper()->setCookies();
+        $block = Mage::app()->getLayout()->createBlock('popov_retag/script');
+        //$script = $block->getCatalogProductViewScript();
+
+        $beforeBodyEnd = Mage::app()->getLayout()->getBlock('before_body_end');
+
+        //$handle = Mage::app()->getLayout()->getUpdate()->getHandles();
+
+        /*$block = $this->getLayout()->createBlock(
+            'Mage_Core_Block_Template',
+            'my_block_name_here',
+            array('template' => 'activecodeline/developer.phtml')
+        );*/
+
+
+        $beforeBodyEnd->append($block);
+        //echo $script;
 	}
 
 	public function hookToSetPokuponCookies() {
