@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<config>
+	<tabs>
+		<popov module="popov_retag" translate="label">
+			<label>Popov's Modules</label>
+			<sort_order>10000</sort_order>
+		</popov>
+	</tabs>
+
+	<sections>
+		<popov_retag module="popov_retag" translate="label">
+			<label>Marketing Tags</label>
+			<sort_order>200</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<tab>popov</tab>
+			<groups>
+				<settings translate="label">
+					<label>Admitad ReTag Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>10</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<cms_index_index_code translate="label comment">
+							<label>Home Page Code</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cms_index_index_code>
+						<catalog_category_view_code translate="label comment">
+							<label>Catalog Page Code</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</catalog_category_view_code>
+						<catalog_product_view_code translate="label comment">
+							<label>Product Page Code</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</catalog_product_view_code>
+						<checkout_cart_index_code translate="label comment">
+							<label>Cart Page Code</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</checkout_cart_index_code>
+						<checkout_onepage_success_code translate="label comment">
+							<label>Success Page Code</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</checkout_onepage_success_code>
+					</fields>
+				</settings>
+			</groups>
+		</popov_retag>
+	</sections>
+</config>

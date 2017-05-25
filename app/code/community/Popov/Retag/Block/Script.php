@@ -1,124 +1,81 @@
 <?php
 
 /**
- * Pokupon Pixel
+ * Admitad ReTag Script
  *
  * @category Popov
  * @package Popov_Retag
  * @author Popov Sergiy <popov@popov.com.ua>
- * @datetime: 16.08.2015 18:25
+ * @datetime: 25.04.2017 17:15
  */
 class Popov_Retag_Block_Script extends Mage_Page_Block_Html_Wrapper {
 
-	public function getCatalogProductViewScript() {
-		$product = Mage::registry('current_product');
+    public function getCmsIndexIndexScript()
+    {
+        $reTagData = array(
+            //'code' => '9ce8887d95',
+            'level' => 0,
+            'variables' => ''
+        );
 
-			return sprintf('<script type="text/javascript">
-    // required object
-    window.ad_product = {
-        "id": "%s",   // required
-        "vendor": "",
-        "price": "%s",
-        "url": "%s",
-        "picture": "",
-        "name": "%s",
-        "category": ""
-    };
+        return $reTagData;
+    }
 
-    window._retag = window._retag || [];
-    window._retag.push({code: "9ce8887d93", level: 2});
-    (function () {
-        var id = "admitad-retag";
-        if (document.getElementById(id)) {return;}
-        var s = document.createElement("script");
-        s.async = true; s.id = id;
-        var r = (new Date).getDate();
-        s.src = (document.location.protocol == "https:" ? "https:" : "http:") + "//cdn.lenmit.com/static/js/retag.js?r="+r;
-        var a = document.getElementsByTagName("script")[0]
-        a.parentNode.insertBefore(s, a);
-    })()
-</script>', $product->getId(), $product->getFinalPrice(), Mage::helper('core/url')->getCurrentUrl()/*, Mage::helper('catalog/image')->init($product, 'image')*/, Mage::helper('core')->escapeHtml($product->getName()));
-	}
-
-	public function getCmsIndexIndexScript() {
-	    return sprintf('<script type="text/javascript">
-    window._retag = window._retag || [];
-    window._retag.push({code: "9ce8887d95", level: 0});
-    (function () {
-        var id = "admitad-retag";
-        if (document.getElementById(id)) {return;}
-        var s = document.createElement("script");
-        s.async = true; s.id = id;
-        var r = (new Date).getDate();
-        s.src = (document.location.protocol == "https:" ? "https:" : "http:") + "//cdn.lenmit.com/static/js/retag.js?r="+r;
-        var a = document.getElementsByTagName("script")[0]
-        a.parentNode.insertBefore(s, a);
-    })()
-</script>');
-	}
-
-	public function getCatalogCategoryViewScript() {
-		die(__METHOD__);
-		return $this->getCatalogCategoryLayeredScript();
-	}
-	
-	public function getCatalogCategoryLayeredScript() {
-		die(__METHOD__);
+    public function getCatalogCategoryViewScript()
+    {
         $category = Mage::registry('current_category');
+        $reTagData = array(
+            //'code' => '9ce8887d94',
+            'level' => 1,
+            'variables' => sprintf('window.ad_category = "%s";', $category->getId())
+        );
 
-	    return sprintf('<script type="text/javascript">
-    window.ad_category = "%s";   // required
+        return $reTagData;
+    }
 
-    window._retag = window._retag || [];
-    window._retag.push({code: "9ce8887d94", level: 1});
-    (function () {
-        var id = "admitad-retag";
-        if (document.getElementById(id)) {return;}
-        var s=document.createElement("script");
-        s.async = true; s.id = id;
-        var r = (new Date).getDate();
-        s.src = (document.location.protocol == "https:" ? "https:" : "http:") + "//cdn.lenmit.com/static/js/retag.js?r="+r;
-        var a = document.getElementsByTagName("script")[0]
-        a.parentNode.insertBefore(s, a);
-    })()
-</script>', $category->getId());
+	public function getCatalogProductViewScript()
+    {
+		$product = Mage::registry('current_product');
+		$data = array(
+            'id' => $product->getId(),
+            'vendor' => '',
+            'price' => $product->getFinalPrice(),
+            'url' => Mage::helper('core/url')->getCurrentUrl(),
+            'picture' => '', /*, Mage::helper('catalog/image')->init($product, 'image')*/
+            'name' => Mage::helper('core')->escapeHtml($product->getName()),
+            'category' => '',
+        );
+        $json = Mage::helper('core')->jsonEncode($data);
+        $reTagData = array(
+            //'code' => '9ce8887d93',
+            'level' => 2,
+            'variables' => sprintf('window.ad_product = %s;', $json)
+        );
+
+        return $reTagData;
 	}
 
-	/** checkout_cart_index */
-	public function getCheckoutCartIndexScript() {
-		die(__METHOD__);
-        $data = array();
+	public function getCheckoutCartIndexScript()
+    {
         $items = Mage::getSingleton('checkout/cart')->getQuote()->getAllItems();
+        $data = array();
         foreach ($items as $item) {
             //$productName = $item->getProduct()->getName();
             //$productPrice = $item->getProduct()->getPrice();
             $data[] = array('id' => $item->getProductId(), 'number' => $item->getQty());
         }
+        $reTagData = array(
+            //'code' => '9ce8887d92',
+            'level' => 3,
+            'variables' => sprintf('window.ad_products = "%s";', Mage::helper('core')->jsonEncode($data))
+        );
 
-	    return sprintf('<script type="text/javascript">
-    window.ad_products = [
-    	%s
-    ];
-
-    window._retag = window._retag || [];
-    window._retag.push({code: "9ce8887d92", level: 3});
-    (function () {
-        var id = "admitad-retag";
-        if (document.getElementById(id)) {return;}
-        var s = document.createElement("script");
-        s.async = true; s.id = id;
-        var r = (new Date).getDate();
-        s.src = (document.location.protocol == "https:" ? "https:" : "http:") + "//cdn.lenmit.com/static/js/retag.js?r="+r;
-        var a = document.getElementsByTagName("script")[0]
-        a.parentNode.insertBefore(s, a);
-    })()
-</script>', Mage::helper('core')->jsonEncode($data));
+        return $reTagData;
 	}
 
-	public function getCheckoutOnepageSuccessScript() {
-
+	public function getCheckoutOnepageSuccessScript()
+    {
 		$order = Mage::getModel('sales/order')->load(Mage::getSingleton('checkout/session')->getLastOrderId());
-
         $items = $order->getAllVisibleItems();
         $data = array();
         foreach ($items as $item) {
@@ -127,15 +84,31 @@ class Popov_Retag_Block_Script extends Mage_Page_Block_Html_Wrapper {
             $data[] = array('id' => $item->getProductId(), 'number' => $item->getQty());
         }
 
-			return sprintf('<script type="text/javascript">
-    window.ad_order = "%s";    // required
-    window.ad_amount = "%d";
-    window.ad_products = [
-    	%s
-    ];
+        $reTagData = array(
+            //'code' => '9ce8887d91',
+            'level' => 4,
+            'variables' => sprintf('window.ad_order = "%s"; window.ad_amount = "%d"; window.ad_products = "%s";',
+                $order->getId(), $order->getGrandTotal(), Mage::helper('core')->jsonEncode($data)
+            )
+        );
 
+        return $reTagData;
+	}
+
+    protected function _toHtml()
+    {
+		//die(__METHOD__);
+        if (!($method = 'get' . uc_words($this->getData('action'), '') . 'Script')) {
+            return '';
+        }
+
+        $code = Mage::getStoreConfig('popov_retag/settings/' . $this->getData('action') . '_code');
+
+        $reTagData = $this->{$method}();
+        $script = sprintf('<script type="text/javascript">
+    %s
     window._retag = window._retag || [];
-    window._retag.push({code: "9ce8887d91", level: 4});
+    window._retag.push({code: "%s", level: %d});
     (function () {
         var id = "admitad-retag";
         if (document.getElementById(id)) {return;}
@@ -146,31 +119,8 @@ class Popov_Retag_Block_Script extends Mage_Page_Block_Html_Wrapper {
         var a = document.getElementsByTagName("script")[0]
         a.parentNode.insertBefore(s, a);
     })()
-</script>', $order->getId(), $order->getGrandTotal(), Mage::helper('core')->jsonEncode($data));
-	}
+</script>', $reTagData['variables'], $code, $reTagData['level']);
 
-	public function getCompletePokuponPixel() {
-		$cookie = Mage::getSingleton('core/cookie');
-		$order = Mage::getModel('sales/order')->load(Mage::getSingleton('checkout/session')->getLastOrderId());
-
-		if ($cookie->get('POKUPON_DID')) {
-			return sprintf('<img src="http://pokupon.ua/pixel/v2/%d/complete.png?uid=%d&ord_id=%s&amount=%d" />',
-				$cookie->get('POKUPON_DID'),
-				(int) $cookie->get('POKUPON_UID'),
-				$order->getId(),
-				$order->getGrandTotal()
-			);
-		}
-	}
-
-
-    protected function _toHtml()
-    {
-		//die(__METHOD__);
-        if (!($method = 'get' . uc_words($this->getData('action'), '') . 'Script')) {
-            return '';
-        }
-
-        return $this->{$method}();
+        return $script;
     }
 }
