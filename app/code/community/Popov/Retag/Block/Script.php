@@ -8,7 +8,8 @@
  * @author Popov Sergiy <popov@popov.com.ua>
  * @datetime: 25.04.2017 17:15
  */
-class Popov_Retag_Block_Script extends Mage_Page_Block_Html_Wrapper {
+class Popov_Retag_Block_Script extends Mage_Page_Block_Html_Wrapper
+{
 
     public function getCmsIndexIndexScript()
     {
