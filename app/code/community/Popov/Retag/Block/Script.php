@@ -41,7 +41,6 @@ class Popov_Retag_Block_Script extends Mage_Page_Block_Html_Wrapper {
 	}
 
 	public function getCmsIndexIndexScript() {
-
 	    return sprintf('<script type="text/javascript">
     window._retag = window._retag || [];
     window._retag.push({code: "9ce8887d95", level: 0});
@@ -58,7 +57,13 @@ class Popov_Retag_Block_Script extends Mage_Page_Block_Html_Wrapper {
 </script>');
 	}
 
+	public function getCatalogCategoryViewScript() {
+		die(__METHOD__);
+		return $this->getCatalogCategoryLayeredScript();
+	}
+	
 	public function getCatalogCategoryLayeredScript() {
+		die(__METHOD__);
         $category = Mage::registry('current_category');
 
 	    return sprintf('<script type="text/javascript">
@@ -79,7 +84,9 @@ class Popov_Retag_Block_Script extends Mage_Page_Block_Html_Wrapper {
 </script>', $category->getId());
 	}
 
+	/** checkout_cart_index */
 	public function getCheckoutCartIndexScript() {
+		die(__METHOD__);
         $data = array();
         $items = Mage::getSingleton('checkout/cart')->getQuote()->getAllItems();
         foreach ($items as $item) {
@@ -159,6 +166,7 @@ class Popov_Retag_Block_Script extends Mage_Page_Block_Html_Wrapper {
 
     protected function _toHtml()
     {
+		//die(__METHOD__);
         if (!($method = 'get' . uc_words($this->getData('action'), '') . 'Script')) {
             return '';
         }

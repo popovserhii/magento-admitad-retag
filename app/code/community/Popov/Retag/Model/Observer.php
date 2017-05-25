@@ -17,6 +17,7 @@ class Popov_Retag_Model_Observer extends Varien_Event_Observer {
 
 	public function hookToSetProductScript() 
 	{
+		//Zend_Debug::dump(Mage::app()->getFrontController()->getAction()->getFullActionName()); die(__METHOD__);
         $block = Mage::app()->getLayout()->createBlock(
             'popov_retag/script',
             'admitad.retag.script',
@@ -35,7 +36,7 @@ class Popov_Retag_Model_Observer extends Varien_Event_Observer {
             array('template' => 'activecodeline/developer.phtml')
         );*/
 
-
+		//Zend_Debug::dump($block); die(__METHOD__);		
         $beforeBodyEnd->append($block);
         //echo $script;
 	}

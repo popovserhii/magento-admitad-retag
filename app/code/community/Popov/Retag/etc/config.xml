@@ -43,12 +43,21 @@
 					</popov_retag_pixel_observer>
 				</observers>
 			</controller_action_layout_render_before_catalog_product_view>
+			<controller_action_layout_render_before_catalog_category_view>
+				<observers>
+					<popov_retag_pixel_observer>
+						<type>singleton</type>
+						<class>Popov_Retag_Model_Observer</class>
+						<method>hookToSetProductScript</method>
+					</popov_retag_pixel_observer>
+				</observers>
+			</controller_action_layout_render_before_catalog_category_view>
 			<controller_action_layout_render_before_catalog_category_layered>
 				<observers>
 					<popov_retag_pixel_observer>
 						<type>singleton</type>
 						<class>Popov_Retag_Model_Observer</class>
-						<method>hookToAddCheckoutCartPokuponPixel</method>
+						<method>hookToSetProductScript</method>
 					</popov_retag_pixel_observer>
 				</observers>
 			</controller_action_layout_render_before_catalog_category_layered>
@@ -61,6 +70,15 @@
 					</popov_retag_pixel_observer>
 				</observers>
 			</controller_action_layout_render_before_checkout_cart_index>
+			<controller_action_layout_render_before_checkout_onepage_success>
+				<observers>
+					<popov_retag_pixel_observer>
+						<type>singleton</type>
+						<class>Popov_Retag_Model_Observer</class>
+						<method>hookToSetProductScript</method>
+					</popov_retag_pixel_observer>
+				</observers>
+			</controller_action_layout_render_before_checkout_onepage_success>
 		</events>
 	</global>
 
