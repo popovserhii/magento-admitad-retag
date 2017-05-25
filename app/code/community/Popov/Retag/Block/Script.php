@@ -81,7 +81,7 @@ class Popov_Retag_Block_Script extends Mage_Page_Block_Html_Wrapper {
         foreach ($items as $item) {
             //$productName = $item->getProduct()->getName();
             //$productPrice = $item->getProduct()->getPrice();
-            $data[] = array('id' => $item->getProductId(), 'number' => $item->getQty());
+            $data[] = array('id' => $item->getProductId(), 'number' => $item->getQtyOrdered());
         }
 
         $reTagData = array(
