@@ -10,7 +10,6 @@
  */
 class Popov_Retag_Block_Script extends Mage_Page_Block_Html_Wrapper
 {
-
     public function getCmsIndexIndexScript()
     {
         $reTagData = array(
