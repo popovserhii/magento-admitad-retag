@@ -25,6 +25,16 @@
 
 		<events>
 			<!-- this name is really important, use this to indicate the layout-render-before event -->
+			<controller_action_layout_render_before>
+				<observers>
+					<popov_retag_cookies_observer>
+						<type>singleton</type>
+						<class>Popov_Retag_Model_Observer</class>
+						<method>hookToSetCookies</method>
+					</popov_retag_cookies_observer>
+				</observers>
+			</controller_action_layout_render_before>
+			<!-- this name is really important, use this to indicate the layout-render-before event -->
 			<controller_action_layout_render_before_cms_index_index>
 				<observers>
 					<popov_retag_pixel_observer>
@@ -77,6 +87,15 @@
 						<class>Popov_Retag_Model_Observer</class>
 						<method>hookToSetScript</method>
 					</popov_retag_pixel_observer>
+				</observers>
+			</controller_action_layout_render_before_checkout_onepage_success>
+			<controller_action_layout_render_before_checkout_onepage_success>
+				<observers>
+					<popov_retag_send_back_request>
+						<type>singleton</type>
+						<class>Popov_Retag_Model_Observer</class>
+						<method>hookToSendBackRequest</method>
+					</popov_retag_send_back_request>
 				</observers>
 			</controller_action_layout_render_before_checkout_onepage_success>
 		</events>

@@ -13,7 +13,6 @@ class Popov_Retag_Block_Script extends Mage_Page_Block_Html_Wrapper
     public function getCmsIndexIndexScript()
     {
         $reTagData = array(
-            //'code' => '9ce8887d95',
             'level' => 0,
             'variables' => ''
         );
@@ -25,7 +24,6 @@ class Popov_Retag_Block_Script extends Mage_Page_Block_Html_Wrapper
     {
         $category = Mage::registry('current_category');
         $reTagData = array(
-            //'code' => '9ce8887d94',
             'level' => 1,
             'variables' => sprintf('window.ad_category = "%s";', $category->getId())
         );
@@ -45,11 +43,9 @@ class Popov_Retag_Block_Script extends Mage_Page_Block_Html_Wrapper
             'name' => Mage::helper('core')->escapeHtml($product->getName()),
             'category' => '',
         );
-        $json = Mage::helper('core')->jsonEncode($data);
         $reTagData = array(
-            //'code' => '9ce8887d93',
             'level' => 2,
-            'variables' => sprintf('window.ad_product = %s;', $json)
+            'variables' => sprintf('window.ad_product = %s;', Mage::helper('core')->jsonEncode($data))
         );
 
         return $reTagData;
@@ -67,7 +63,7 @@ class Popov_Retag_Block_Script extends Mage_Page_Block_Html_Wrapper
         $reTagData = array(
             //'code' => '9ce8887d92',
             'level' => 3,
-            'variables' => sprintf('window.ad_products = "%s";', Mage::helper('core')->jsonEncode($data))
+            'variables' => sprintf('window.ad_products = %s;', Mage::helper('core')->jsonEncode($data))
         );
 
         return $reTagData;
@@ -87,7 +83,7 @@ class Popov_Retag_Block_Script extends Mage_Page_Block_Html_Wrapper
         $reTagData = array(
             //'code' => '9ce8887d91',
             'level' => 4,
-            'variables' => sprintf('window.ad_order = "%s"; window.ad_amount = "%d"; window.ad_products = "%s";',
+            'variables' => sprintf('window.ad_order = "%s"; window.ad_amount = "%d"; window.ad_products = %s;',
                 $order->getId(), $order->getGrandTotal(), Mage::helper('core')->jsonEncode($data)
             )
         );
@@ -97,7 +93,6 @@ class Popov_Retag_Block_Script extends Mage_Page_Block_Html_Wrapper
 
     protected function _toHtml()
     {
-		//die(__METHOD__);
         if (!($method = 'get' . uc_words($this->getData('action'), '') . 'Script')) {
             return '';
         }
