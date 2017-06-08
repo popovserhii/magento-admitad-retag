@@ -13,6 +13,9 @@ class Popov_Retag_Helper_BackRequest
     public function sendBackRequest()
     {
         $cookie = Mage::getSingleton('core/cookie');
+		if (!$cookie->get('ADMITAD_UID')) {
+			return;
+		}
         $order = Mage::getModel('sales/order')->load(Mage::getSingleton('checkout/session')->getLastOrderId());
 
         $backUrl = 'https://ad.admitad.com/r';
@@ -29,21 +32,20 @@ class Popov_Retag_Helper_BackRequest
                 'order_id' => $order->getId(),
                 'tariff_code' => 1,
                 'price' => $item->getPrice(),
-                'quantity' => $item->getQtyOrdered(),
-                'position_id' => $key,
+                'quantity' => (int) $item->getQtyOrdered(),
+                'position_id' => $key + 1,
                 'position_count' => $order->getTotalItemCount(),
                 'product_id' => $item->getProductId(),
                 'payment_type' => 'sale',
 
                 'coupon' => (int) (bool) $order->getCouponCode(),
-                'client_id' => Mage::getSingleton('customer/session')->getCustomer()->getId(),
                 'old_consumer' => $this->hasCustomerPreviousOrders(),
-                'currency_code' => Mage::app()
-                    ->getLocale()
-                    ->currency(Mage::app()->getStore()->getCurrentCurrencyCode())
-                    ->getSymbol(),
+                'currency_code' => Mage::app()->getStore()->getCurrentCurrencyCode(),
                 'country_code' => $this->getCountryCode()
             ];
+			if ($customerId = Mage::getSingleton('customer/session')->getCustomer()->getId()) {
+				$post['client_id'] = $customerId;
+			}
 
             $this->send($backUrl, $post);
 
@@ -52,6 +54,7 @@ class Popov_Retag_Helper_BackRequest
 
     public function send($url, $data)
     {
+		//Zend_Debug::dump([$url, $data]); die(__METHOD__);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -84,8 +87,13 @@ class Popov_Retag_Helper_BackRequest
      */
     public function getCountryCode()
     {
-        $customer = Mage::getSingleton('customer/session')->getCustomer();
-        $countryCode = $customer->getDefaultBillingAddress()->getCountry();
+		$customer = Mage::getSingleton('customer/session')->getCustomer();
+		$billingAddress = $customer->getDefaultBillingAddress();
+		if ($billingAddress) {
+			$countryCode = $billingAddress->getCountry();
+		} else {
+			$countryCode = Mage::getStoreConfig('general/country/default');
+		}
 
         return $countryCode;
     }

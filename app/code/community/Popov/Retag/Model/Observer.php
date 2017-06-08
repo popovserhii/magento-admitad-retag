@@ -7,7 +7,8 @@
  * @author Popov Sergiy <popov@popov.com.ua>
  * @datetime: 24.05.2017 17:40
  */
-
+ini_set('display_errors', 'on');
+error_reporting(-1);
 class Popov_Retag_Model_Observer extends Varien_Event_Observer
 {
 	/**
@@ -27,7 +28,7 @@ class Popov_Retag_Model_Observer extends Varien_Event_Observer
 	}
 
     public function hookToSendBackRequest()
-    {
+	{
         /** @var $helper Popov_Retag_Helper_BackRequest */
         $helper = Mage::helper('popov_retag/backRequest');
         $helper->sendBackRequest();
