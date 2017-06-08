@@ -18,14 +18,14 @@ class Popov_Retag_Helper_BackRequest
 		}
         $order = Mage::getModel('sales/order')->load(Mage::getSingleton('checkout/session')->getLastOrderId());
 
-        $backUrl = 'https://ad.admitad.com/r';
+        $backUrl = Mage::getStoreConfig('popov_retag/postback/back_url');
 
         $items = $order->getAllVisibleItems();
         foreach ($items as $key => $item) {
             // https://ad.admitad.com/r?campaign_code=007d5b641c&postback=1&postback_key=CF5F0727D4F9E8aD74621209263D243B&action_code=1&uid=&order_id=&tariff_code=1&currency_code=&price=&quantity=&position_id=&position_count=&product_id=&client_id=&payment_type=sale
             $post = [
-                'postback_key' => 'CF5F0727D4F9E8aD74621209263D243B',
-                'campaign_code' => '007d5b641c',
+                'postback_key' => Mage::getStoreConfig('popov_retag/postback/postback_key'),
+                'campaign_code' => Mage::getStoreConfig('popov_retag/postback/campaign_code'),
                 'postback' => 1,
                 'action_code' => 1,
                 'uid' => $cookie->get('ADMITAD_UID'),
