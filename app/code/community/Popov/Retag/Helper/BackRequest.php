@@ -22,7 +22,6 @@ class Popov_Retag_Helper_BackRequest
 
         $items = $order->getAllVisibleItems();
         foreach ($items as $key => $item) {
-            // https://ad.admitad.com/r?campaign_code=007d5b641c&postback=1&postback_key=CF5F0727D4F9E8aD74621209263D243B&action_code=1&uid=&order_id=&tariff_code=1&currency_code=&price=&quantity=&position_id=&position_count=&product_id=&client_id=&payment_type=sale
             $post = [
                 'postback_key' => Mage::getStoreConfig('popov_retag/postback/postback_key'),
                 'campaign_code' => Mage::getStoreConfig('popov_retag/postback/campaign_code'),
@@ -48,19 +47,23 @@ class Popov_Retag_Helper_BackRequest
 			}
 
             $this->send($backUrl, $post);
-
         }
     }
 
     public function send($url, $data)
     {
-		//Zend_Debug::dump([$url, $data]); die(__METHOD__);
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+		$urlQuery = $url . '?' . http_build_query($data);
 
-        $response = curl_exec($ch);
+		$ch = curl_init();
+		// Set query data here with the URL
+		curl_setopt($ch, CURLOPT_URL, $urlQuery);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 3);
+		#curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+
+		$response = curl_exec($ch);
+		curl_close($ch);
+
     }
 
     /**
@@ -97,5 +100,4 @@ class Popov_Retag_Helper_BackRequest
 
         return $countryCode;
     }
-
 }
