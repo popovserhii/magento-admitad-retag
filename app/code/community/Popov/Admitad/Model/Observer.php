@@ -29,9 +29,9 @@ class Popov_Admitad_Model_Observer extends Varien_Event_Observer
 
     public function hookToSendBackRequest()
 	{
-        /** @var $helper Popov_Admitad_Helper_BackRequest */
+        /** @var $helper Popov_Admitad_Helper_PostBack */
         $helper = Mage::helper('popov_admitad/backRequest');
-        $helper->sendBackRequest();
+        $helper->buildParams();
     }
 
     public function hookToSetCookies()

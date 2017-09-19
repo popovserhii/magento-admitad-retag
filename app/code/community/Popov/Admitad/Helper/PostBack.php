@@ -8,9 +8,9 @@
  * @author Popov Sergiy <popov@agere.com.ua>
  * @datetime: 07.06.2017 17:48
  */
-class Popov_Admitad_Helper_BackRequest
+class Popov_Admitad_Helper_PostBack
 {
-    public function sendBackRequest()
+    public function send()
     {
         $cookie = Mage::getSingleton('core/cookie');
 		if (!$cookie->get('ADMITAD_UID')) {
@@ -46,24 +46,8 @@ class Popov_Admitad_Helper_BackRequest
 				$post['client_id'] = $customerId;
 			}
 
-            $this->send($backUrl, $post);
+            Mage::helper('popov_retag/postBack')->send($backUrl, $post);
         }
-    }
-
-    public function send($url, $data)
-    {
-		$urlQuery = $url . '?' . http_build_query($data);
-
-		$ch = curl_init();
-		// Set query data here with the URL
-		curl_setopt($ch, CURLOPT_URL, $urlQuery);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 3);
-		#curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-
-		$response = curl_exec($ch);
-		curl_close($ch);
-
     }
 
     /**
