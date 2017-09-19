@@ -3,23 +3,23 @@
  * Add Admitad ReTag
  *
  * @category Popov
- * @package Popov_Retag
+ * @package Popov_Admitad
  * @author Popov Sergiy <popov@popov.com.ua>
  * @datetime: 24.05.2017 17:40
  */
 ini_set('display_errors', 'on');
 error_reporting(-1);
-class Popov_Retag_Model_Observer extends Varien_Event_Observer
+class Popov_Admitad_Model_Observer extends Varien_Event_Observer
 {
 	/**
-	 * @var Popov_Retag_Helper_Data $helper
+	 * @var Popov_Admitad_Helper_Data $helper
 	 */
 	protected $helper;
 
 	public function hookToSetScript()
 	{
         $block = Mage::app()->getLayout()->createBlock(
-            'popov_retag/script',
+            'popov_admitad/script',
             'admitad.retag.script',
             array('action' => Mage::app()->getFrontController()->getAction()->getFullActionName())
         );
@@ -29,8 +29,8 @@ class Popov_Retag_Model_Observer extends Varien_Event_Observer
 
     public function hookToSendBackRequest()
 	{
-        /** @var $helper Popov_Retag_Helper_BackRequest */
-        $helper = Mage::helper('popov_retag/backRequest');
+        /** @var $helper Popov_Admitad_Helper_BackRequest */
+        $helper = Mage::helper('popov_admitad/backRequest');
         $helper->sendBackRequest();
     }
 
@@ -41,7 +41,7 @@ class Popov_Retag_Model_Observer extends Varien_Event_Observer
 
     public function getHelper() {
         if (!$this->helper) {
-            $this->helper = Mage::helper('popov_retag');
+            $this->helper = Mage::helper('popov_admitad');
         }
 
         return $this->helper;

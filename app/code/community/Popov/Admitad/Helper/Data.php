@@ -3,11 +3,11 @@
  * Admitad ReTag default Helper
  *
  * @category Popov
- * @package Popov_Retag
+ * @package Popov_Admitad
  * @author Popov Sergiy <popov@popov.com.ua>
  * @datetime: 20.04.14 14:54
  */
-class Popov_Retag_Helper_Data extends Mage_Core_Helper_Abstract
+class Popov_Admitad_Helper_Data extends Mage_Core_Helper_Abstract
 {
     public function setCookies() {
         $request = Mage::app()->getRequest();

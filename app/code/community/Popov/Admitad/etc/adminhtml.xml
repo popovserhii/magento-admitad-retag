@@ -1,23 +1,23 @@
 <?xml version="1.0" ?>
 <config>
 	<!--<menu>
-		<popov_retag translate="title" module="popov_retag">
+		<popov_admitad translate="title" module="popov_admitad">
 			<title>Seo</title>
 			<sort_order>71</sort_order>
 
 			<children>
-				<popov_retag_meta translate="title" module="popov_retag">
+				<popov_admitad_meta translate="title" module="popov_admitad">
 					<title>Meta Tags</title>
 					<action>adminhtml/meta/index</action>
 					<sort_order>10</sort_order>
-				</popov_retag_meta>
-				<popov_retag_block translate="title" module="popov_retag">
+				</popov_admitad_meta>
+				<popov_admitad_block translate="title" module="popov_admitad">
 					<title>Seo Block</title>
 					<action>adminhtml/seoBlock/index</action>
 					<sort_order>20</sort_order>
-				</popov_retag_block>
+				</popov_admitad_block>
 			</children>
-		</popov_retag>
+		</popov_admitad>
 	</menu>-->
 
 	<acl>
@@ -33,28 +33,28 @@
 						<children>
 							<config>
 								<children>
-									<popov_retag translate="title" module="popov_retag">
+									<popov_admitad translate="title" module="popov_admitad">
 										<title>Marketing Tags</title>
 										<sort_order>100</sort_order>
-									</popov_retag>
+									</popov_admitad>
 								</children>
 							</config>
 						</children>
 					</system>
 
-					<!--<popov_retag translate="title" module="popov_retag">
+					<!--<popov_admitad translate="title" module="popov_admitad">
 						<title>Seo</title>
 						<children>
-							<popov_retag_meta translate="title" module="popov_retag">
+							<popov_admitad_meta translate="title" module="popov_admitad">
 								<title>Meta Tags</title>
 								<sort_order>10</sort_order>
-							</popov_retag_meta>
-							<popov_retag_block translate="title" module="popov_retag">
+							</popov_admitad_meta>
+							<popov_admitad_block translate="title" module="popov_admitad">
 								<title>Seo Block</title>
 								<sort_order>20</sort_order>
-							</popov_retag_block>
+							</popov_admitad_block>
 						</children>
-					</popov_retag>-->
+					</popov_admitad>-->
 
 				</children>
 			</admin>

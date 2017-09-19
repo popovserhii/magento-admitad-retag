@@ -4,11 +4,11 @@
  * Admitad ReTag Script
  *
  * @category Popov
- * @package Popov_Retag
+ * @package Popov_Admitad
  * @author Popov Sergiy <popov@popov.com.ua>
  * @datetime: 25.04.2017 17:15
  */
-class Popov_Retag_Block_Script extends Mage_Page_Block_Html_Wrapper
+class Popov_Admitad_Block_Script extends Mage_Page_Block_Html_Wrapper
 {
     public function getCmsIndexIndexScript()
     {
@@ -97,7 +97,7 @@ class Popov_Retag_Block_Script extends Mage_Page_Block_Html_Wrapper
             return '';
         }
 
-        $code = Mage::getStoreConfig('popov_retag/settings/' . $this->getData('action') . '_code');
+        $code = Mage::getStoreConfig('popov_admitad/settings/' . $this->getData('action') . '_code');
 
         $reTagData = $this->{$method}();
         $script = sprintf('<script type="text/javascript">

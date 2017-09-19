@@ -2,15 +2,15 @@
     "name": "popov/magento-admitad-retag",
     "type": "magento-module",
     "license":"MIT Licence",
-    "description":"Simple and Save Solution for managing third-party service codes (Retargeting, SSP, DSP, RTB)",
+    "description":"Admitad Retargetting",
     "authors":[{
         "name":"Serhii Popov",
-        "email":"popow.sergiy@gmail.com"
+        "email":"popow.serhii@gmail.com"
     }],
     "extra": {
         "map": [
-          ["app/etc/modules/Popov_Retag.xml", "app/etc/modules/Popov_Retag.xml"],
-          ["app/code/community/Popov/Retag/", "app/code/community/Popov/Retag/"]
+          ["app/etc/modules/Popov_Admitad.xml", "app/etc/modules/Popov_Admitad.xml"],
+          ["app/code/community/Popov/Admitad/", "app/code/community/Popov/Admitad/"]
 		]
     }
 }

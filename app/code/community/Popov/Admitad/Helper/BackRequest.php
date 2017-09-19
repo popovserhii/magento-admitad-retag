@@ -8,7 +8,7 @@
  * @author Popov Sergiy <popov@agere.com.ua>
  * @datetime: 07.06.2017 17:48
  */
-class Popov_Retag_Helper_BackRequest
+class Popov_Admitad_Helper_BackRequest
 {
     public function sendBackRequest()
     {
@@ -18,13 +18,13 @@ class Popov_Retag_Helper_BackRequest
 		}
         $order = Mage::getModel('sales/order')->load(Mage::getSingleton('checkout/session')->getLastOrderId());
 
-        $backUrl = Mage::getStoreConfig('popov_retag/postback/back_url');
+        $backUrl = Mage::getStoreConfig('popov_admitad/postback/back_url');
 
         $items = $order->getAllVisibleItems();
         foreach ($items as $key => $item) {
             $post = [
-                'postback_key' => Mage::getStoreConfig('popov_retag/postback/postback_key'),
-                'campaign_code' => Mage::getStoreConfig('popov_retag/postback/campaign_code'),
+                'postback_key' => Mage::getStoreConfig('popov_admitad/postback/postback_key'),
+                'campaign_code' => Mage::getStoreConfig('popov_admitad/postback/campaign_code'),
                 'postback' => 1,
                 'action_code' => 1,
                 'uid' => $cookie->get('ADMITAD_UID'),

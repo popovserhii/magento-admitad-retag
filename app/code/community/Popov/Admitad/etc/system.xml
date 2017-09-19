@@ -1,14 +1,14 @@
 <?xml version="1.0" ?>
 <config>
 	<tabs>
-		<popov module="popov_retag" translate="label">
+		<popov module="popov_admitad" translate="label">
 			<label>Popov's Modules</label>
 			<sort_order>10000</sort_order>
 		</popov>
 	</tabs>
 
 	<sections>
-		<popov_retag module="popov_retag" translate="label">
+		<popov_admitad module="popov_admitad" translate="label">
 			<label>Marketing Tags</label>
 			<sort_order>200</sort_order>
 			<show_in_default>1</show_in_default>
@@ -101,6 +101,6 @@
 					</fields>
 				</postback>
 			</groups>
-		</popov_retag>
+		</popov_admitad>
 	</sections>
 </config>
