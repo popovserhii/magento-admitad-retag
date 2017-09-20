@@ -34,7 +34,7 @@
 							<config>
 								<children>
 									<popov_admitad translate="title" module="popov_admitad">
-										<title>Marketing Tags</title>
+										<title>Admitad Tags</title>
 										<sort_order>100</sort_order>
 									</popov_admitad>
 								</children>

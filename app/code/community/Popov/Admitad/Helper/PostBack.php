@@ -3,12 +3,12 @@
 /**
  * Enter description here...
  *
- * @category Agere
- * @package Agere_<package>
- * @author Popov Sergiy <popov@agere.com.ua>
+ * @category Popov
+ * @package Popov_<package>
+ * @author Popov Sergiy <popow.serhii@gmail.com>
  * @datetime: 07.06.2017 17:48
  */
-class Popov_Admitad_Helper_PostBack
+class Popov_Admitad_Helper_PostBack extends Popov_Retag_Helper_PostBack
 {
     public function send()
     {
@@ -46,7 +46,7 @@ class Popov_Admitad_Helper_PostBack
 				$post['client_id'] = $customerId;
 			}
 
-            Mage::helper('popov_retag/postBack')->send($backUrl, $post);
+            parent::send($backUrl, $post);
         }
     }
 
