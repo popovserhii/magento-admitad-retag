@@ -18,13 +18,13 @@ class Popov_Admitad_Helper_PostBack
 		}
         $order = Mage::getModel('sales/order')->load(Mage::getSingleton('checkout/session')->getLastOrderId());
 
-        $backUrl = Mage::getStoreConfig('popov_admitad/postback/back_url');
+        $backUrl = Mage::getStoreConfig('popov_admitad/settings/postback_url');
 
         $items = $order->getAllVisibleItems();
         foreach ($items as $key => $item) {
             $post = [
-                'postback_key' => Mage::getStoreConfig('popov_admitad/postback/postback_key'),
-                'campaign_code' => Mage::getStoreConfig('popov_admitad/postback/campaign_code'),
+                'postback_key' => Mage::getStoreConfig('popov_admitad/settings/postback_key'),
+                'campaign_code' => Mage::getStoreConfig('popov_admitad/settings/campaign_code'),
                 'postback' => 1,
                 'action_code' => 1,
                 'uid' => $cookie->get('ADMITAD_UID'),

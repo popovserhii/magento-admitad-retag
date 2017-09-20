@@ -22,9 +22,9 @@
 
 	<acl>
 		<resources>
-			<all>
+			<!--<all>
 				<title>Allow Everything</title>
-			</all>
+			</all>-->
 
 			<admin>
 				<children>

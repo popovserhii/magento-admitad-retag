@@ -33,4 +33,15 @@ class Popov_Admitad_Helper_Data extends Mage_Core_Helper_Abstract
 
         return true;
     }
+
+    public function clearCookies()
+    {
+        $cookie = Mage::getSingleton('core/cookie');
+
+        $cookie->delete('ADMITAD_UID');
+        $cookie->delete('ADMITAD_PUBLISHER_ID');
+        $cookie->delete('ADMITAD_WEBSITE_ID');
+        $cookie->delete('ADMITAD_CHANEL_ID');
+        $cookie->delete('ADMITAD_GROUP_ID');
+    }
 }

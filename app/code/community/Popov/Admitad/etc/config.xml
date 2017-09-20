@@ -45,7 +45,9 @@
 
     <retargeting>
         <modules>
-            <Popov_Admitad />
+            <Popov_Admitad>
+                <utm_uid_name>admitad_uid</utm_uid_name>
+            </Popov_Admitad>
         </modules>
     </retargeting>
 </config>
