@@ -28,7 +28,7 @@ class Popov_Admitad_Helper_PostBack extends Popov_Retag_Helper_PostBack
                 'postback' => 1,
                 'action_code' => 1,
                 'uid' => $cookie->get('ADMITAD_UID'),
-                'order_id' => $order->getId(),
+                'order_id' => $order->getIncrementId(),
                 'tariff_code' => 1,
                 'price' => $item->getPrice(),
                 'quantity' => (int) $item->getQtyOrdered(),
