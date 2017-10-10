@@ -2,7 +2,7 @@
 <config>
 	<sections>
 		<popov_admitad module="popov_admitad" translate="label">
-			<label>Admitad Tags</label>
+			<label>Admitad</label>
 			<sort_order>200</sort_order>
 			<show_in_default>1</show_in_default>
 			<show_in_website>1</show_in_website>
